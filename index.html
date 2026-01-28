@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thierry Lefebvre - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+
+<div id="password-overlay">
+
+
+
+<h2>Thierry Lefebvre - Portfolio<h2>
+    <form id="login-form" onsubmit="event.preventDefault(); checkPassword();">
+    <input type="password" id="pass-input" placeholder="password">
+    <button type="submit">Enter</button>
+</form>
+    <p id="err-msg">invalid password</p>
+</div>
+
+<div class="timeline-container">
+    <svg class="timeline-svg">
+        <defs>
+            <linearGradient id="ribbon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="var(--accent-color)" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="var(--accent-color)" stop-opacity="0" />
+            </linearGradient>
+        </defs>
+        <path d="" class="timeline-ribbon" />
+        <path d="" class="timeline-path" />
+    </svg>
+</div>
+
+<header class="hero" id="hero">
+    <div class="hero-content">
+        <img src="content/128.png" alt="Thierry Lefebvre" class="profile-pic">
+        <h1>Thierry Lefebvre</h1>
+        <p class="subtitle">PhD in Computer Graphics | R&D Technology Senior Manager</p>
+        <p class="tagline">Expert in Digital Twins, Real-Time Rendering, and Engineering Management.</p>
+        <div class="intro-text">Here you will find a portfolio showcasing the projects I have worked on throughout my career.</div>
+    </div>
+    <a href="https://www.linkedin.com/in/thierry-lefebvre-phd/" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+    </svg>
+</a>
+    <div class="scroll-indicator">↓ Scroll down</div>
+</header>
+
+<main class="timeline">
+
+    
+    <!-- rennes  -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2025</span>
+			<h2>Virtual twin</h2>
+			<p>This video showcases a digital twin of the city of Rennes (WebGL), based on technology similar to Cesium 3DTiles ...</p>
+				<div class="extra-content">
+					<p>This scene is composed of terrain, buildings, vegetation, and urban furniture. The terrain utilizes the TIN format (detailed in the section below) and is streamed via a protocol similar to 3D Tiles (using a quadtree spatial structure). The buildings are derived from CityGML data, converted into 3D meshes with multiple Levels of Detail (LOD). Vegetation and urban furniture are sourced from GeoJSON and Shapefiles. Due to their heterogeneous spatial distribution and repetitive nature, these elements are managed using a KD-tree to balance the spatial structure nodes. Finally, hardware instancing is utilized to optimize both the loading and rendering performance of these assets.</p></div>
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <video src="content/rennes/rennes.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+    
+    <!-- tin  -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2024</span>
+			<h2>TIN Terrain</h2>
+			<p>I worked on TIN (Triangulated Irregular Network) terrain surface modeling...</p>
+				<div class="extra-content">
+					<p>The algorithm computes terrain tiles from GeoTIFF files containing elevation data. It is an iterative process that progressively adds the most significant points—those that minimize surface error—until a specific quality threshold or a maximum vertex count is reached. This results in an adaptive tessellation of the terrain based on its topography, as demonstrated in the video (featuring the terrain of Réunion Island).
+                    </p></div>
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <video src="content/tin/tin.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+
+	<!-- heatmap  
+	<section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+            <span class="date">2019</span>
+            <h2>PhD</h2>
+            <p>Développement de modeleurs géométriques et simulation de rendu d'océan réaliste.</p>
+        </div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div>
+            <img src="content/2019_heatmap.jpg" onclick="toggleZoom(this)"></img>
+        </div>  
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+-->
+     <!-- alula  -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2020</span>
+			<h2>Al'Ula</h2>
+			<p>Here is a 3D representation of the historic village of Al-Ula in Saudi Arabia...</p>
+				<div class="extra-content">
+					<p>Starting from LiDAR data containing several hundred million triangles, the objective was to load the entire dataset and enable real-time navigation within a 3D web application. To achieve this, I implemented a spatial structure (an octree) for progressive loading. Multiple Levels of Detail (LOD) were generated using decimation algorithms (vertex clustering). Additionally, it was necessary to implement mesh stitching between blocks to close the gaps introduced during the decimation process. </p>
+                <img src="content/alula/16ra0m-title.png" width="192" height="128"></img>
+                </div>
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <video src="content/alula/alula.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+     <!-- globe webgl  -->
+	<section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+            <div class="step-content">
+			<span class="date">2014</span>
+			<h2>WebGL earth</h2>
+			<p>This project involved modeling the Earth in WebGL at a 1:1 scale...</p>
+
+				<div class="extra-content">
+					<p>This required addressing precision issues commonly encountered when handling large geometric coordinates on the GPU. The planet's surface is represented by a quadtree that refines as the camera approaches the surface. Elevation data (vertex displacement) is applied to represent the terrain's topography, along with an ortho-imagery layer. To enhance visual realism, an atmospheric scattering algorithm was implemented in GLSL, coupled with a dynamic cloud layer. Finally, the sun's position is calculated based on the date and time to manage day/night cycles.</p>
+                </div>
+
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div>
+            <img src="content/globe.png" onclick="toggleZoom(this)"></img>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+
+     <!-- globe realiste ocean  -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2010</span>
+			<h2>Realistic Globe / Ocean</h2>
+			<p>Within the context of a realistic globe implemented in C# / SharpDX, I developed a real-time ocean rendering system...</p>
+				<div class="extra-content">
+					<p>The ocean movement is represented by periodic trochoidal functions, which allow for the superposition of motion across different scales and frequencies while ensuring seamless continuity across the entire surface. The rendering, implemented in HLSL, uses a lighting model that incorporates transparency, specular highlights, Image-Based Lighting (IBL), and the Fresnel effect.
+                    </p></div>
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <video src="content/ocean/ocean.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+  <!-- PHD aliasing -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2004-2007</span>
+			<h2>Temporal aliasing</h2>
+			<p>Another topic I addressed is temporal aliasing : when displaying images at a specific frequency, each frame only represents a snapshot of a single, precise moment in time...</p>
+				<div class="extra-content">
+					<p>However, time elapses between each frame, making judder and stuttering effects particularly visible on immersive cylindrical screens. To resolve this, I implemented post-process rendering techniques designed to integrate the displacement between two successive frames for every pixel. This not only reduced visual artifacts but also drastically changed the drivers' perception of speed within the simulator. Ultimately, this allows for the study of driver behavior based on their dynamic perception of the 3D scene.</p>
+                <img src="content/simu.jpg" width="128" height="96"></img>
+                </div>
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <video src="content/aliasing/aliasing.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- PHD glare simation -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2004-2007</span>
+			<h2>Glare simulation</h2>
+			<p>In addition to lighting distribution, I also focused on glare simulation to assess driver visibility...</p>
+				<div class="extra-content">
+					<p>Indeed, because the limited luminous power of video projectors prevents the human eye from reacting as it would in a natural environment, simulating its behavior becomes essential. To address this, I developed a glare module that simulates the human eye's response to intense light sources. This allows for the study of driver behavior in such conditions within a driving simulator. These applications also extend to tunnel entries and exits, where abrupt lighting changes can alter human perception and compromise road safety.</p></div>
+
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+              <img src="content/glare.png" onclick="toggleZoom(this)"></img>
+        </div> 
+        <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- PHD lighting simation -->
+    <section class="step reveal">
+        <div class="scroll-up-indicator"><span></span></div>
+        <div class="step-content">
+			<span class="date">2004-2007</span>
+			<h2>Lighting Simulation</h2>
+			<p>During my PhD, I specialized in lighting simulation for driving simulators. The ultimate goal was to validate the photometric distribution of optical units using numerical simulations alone, eliminating the need for physical prototypes...</p>
+				<div class="extra-content">
+					<p> In this context, I developed real-time methods to calculate material reflectance, achieving images that are both visually realistic and physically accurate for precise lighting visualization and measurement. These rendering techniques involve complex material representations (measured BRDFs, synthesized BTFs), mathematical tools for modeling light functions, and the implementation of these models on the GPU.</p>
+				<div class="pdf-container">
+                    <a href="content/manuscritTL.pdf" target="_blank" class="pdf-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pdf-icon">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>PhD Thesis (pdf)</span>
+                    </a>
+                </div>
+                </div>
+
+				<button class="expand-btn" onclick="toggleExpand(this)">
+					<svg viewBox="0 0 24 24" width="24" height="24">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+			</div>
+        <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+            <video src="content/btf/btf.mp4" autoplay loop muted onclick="toggleZoom(this)"></video>
+        </div> 
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Thierry Lefebvre</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
