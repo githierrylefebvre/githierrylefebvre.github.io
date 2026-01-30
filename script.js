@@ -1,40 +1,9 @@
-
-/*function checkPassword() {
-    const password = document.getElementById('pass-input').value;
-    const errMsg = document.getElementById('err-msg');
-    
-    const secureHash = "a310f1a29b3965c7bafc0451ba005fb6d24cf27d3080991e797973334ebb70c4"; 
-
-
-    const inputHash = CryptoJS.SHA256(password).toString();
-
-    if (inputHash === secureHash) {
-    
-        document.getElementById('password-overlay').style.display = 'none';
-        document.body.style.overflow = 'auto'; 
-    
-        updateTimelinePath();
-    } else {
-        errMsg.style.display = 'block';
-        errMsg.textContent = "Invalid password";
-    }
-}
-
-
-document.getElementById('pass-input').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        checkPassword();
-    }
-});
-document.body.style.overflow = 'hidden';
-*/
-
 window.onload = function() {
-    // On attend un tout petit délai pour s'assurer que le rendu est fini
+    
     setTimeout(() => {
         window.scrollTo({
             top: 0,
-            behavior: 'instant' // 'instant' évite de voir la page défiler vers le haut
+            behavior: 'instant' 
         });
     }, 10);
 };
@@ -91,30 +60,27 @@ document.addEventListener("DOMContentLoaded", function() {
             const container = video.parentElement;
 
             if (entry.isIntersecting) {
-                // 1. Si la source n'est pas encore mise, on l'injecte (Lazy Loading)
                 if (!video.src) {
                     video.src = video.dataset.src;
                     video.load();
                 }
 
-                // 2. Lancer la lecture
                 video.play().catch(() => {});
 
-                // 3. Masquer le spinner quand la vidéo est prête à jouer
                 video.oncanplay = () => {
                     video.classList.add('ready');
                     container.classList.add('loaded');
                 };
             } else {
-                // Hors écran : on met en pause (sauf si zoomée, pour ton cas précis)
+
                 if (!video.classList.contains('zoomed')) {
                     video.pause();
                 }
             }
         });
-    }, { threshold: 0.2 }); // Se déclenche quand 20% de la vidéo est visible
+    }, { threshold: 0.2 }); 
 
-    // On applique l'observateur à toutes les vidéos concernées
+
     document.querySelectorAll('.lazy-video').forEach(v => vObserver.observe(v));
 });
 
@@ -240,27 +206,25 @@ class TextScramble {
   }
 }
 
-// Initialisation au scroll avec Intersection Observer
 const observerOptions = { threshold: 0.5 };
 const scrambleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting && !entry.target.dataset.scrambled) {
       const fx = new TextScramble(entry.target);
       fx.setText(entry.target.innerText);
-      entry.target.dataset.scrambled = "true"; // Pour ne le faire qu'une fois
+      entry.target.dataset.scrambled = "true"; 
     }
   });
 }, observerOptions);
 
-// On cible les titres H1 du hero et les titres des steps
 document.querySelectorAll('.step-content h2').forEach(h => scrambleObserver.observe(h));
 
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const particleCount = 80; // Nombre de points (ajuste selon tes besoins)
-const connectionDistance = 120; // Distance max pour tracer une ligne
+const particleCount = 80; 
+const connectionDistance = 120; 
 const mouse = { x: null, y: null, radius: 150 };
 
 window.addEventListener('mousemove', (e) => {
@@ -294,7 +258,6 @@ class Particle {
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
-        // Interaction avec la souris (les particules s'écartent légèrement)
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -307,7 +270,7 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#38bdf8'; // Ton bleu ciel
+        ctx.fillStyle = '#38bdf8'; 
         ctx.fill();
     }
 }
