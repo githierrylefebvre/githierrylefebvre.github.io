@@ -1,5 +1,5 @@
 
-function checkPassword() {
+/*function checkPassword() {
     const password = document.getElementById('pass-input').value;
     const errMsg = document.getElementById('err-msg');
     
@@ -27,7 +27,17 @@ document.getElementById('pass-input').addEventListener('keypress', function (e) 
     }
 });
 document.body.style.overflow = 'hidden';
+*/
 
+window.onload = function() {
+    // On attend un tout petit délai pour s'assurer que le rendu est fini
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant' // 'instant' évite de voir la page défiler vers le haut
+        });
+    }, 10);
+};
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
