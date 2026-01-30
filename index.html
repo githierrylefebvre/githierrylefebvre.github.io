@@ -189,7 +189,22 @@
 			</div>
         <div class="step-media">
             <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div>
-            <img src="content/globe.png" onclick="toggleZoom(this)"></img>
+             <div class="step-media">
+            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
+                <div class="video-container">
+                    <div class="video-loader"></div>
+                    
+                    <video 
+                        data-src="content/globe/globe.mp4" 
+                        loop 
+                        muted 
+                        playsinline
+                        preload="none"
+                        onclick="toggleZoom(this)"
+                        class="lazy-video">
+                    </video>
+                </div>
+        </div> 
         </div> 
         <div class="scroll-indicator"><span></span></div>
     </section>
