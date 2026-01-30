@@ -308,3 +308,7 @@ function animate() {
 
 init();
 animate();
+
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
