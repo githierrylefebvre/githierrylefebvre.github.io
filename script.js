@@ -74,6 +74,40 @@ function toggleZoom(media) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const vObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            const container = video.parentElement;
+
+            if (entry.isIntersecting) {
+                // 1. Si la source n'est pas encore mise, on l'injecte (Lazy Loading)
+                if (!video.src) {
+                    video.src = video.dataset.src;
+                    video.load();
+                }
+
+                // 2. Lancer la lecture
+                video.play().catch(() => {});
+
+                // 3. Masquer le spinner quand la vidéo est prête à jouer
+                video.oncanplay = () => {
+                    video.classList.add('ready');
+                    container.classList.add('loaded');
+                };
+            } else {
+                // Hors écran : on met en pause (sauf si zoomée, pour ton cas précis)
+                if (!video.classList.contains('zoomed')) {
+                    video.pause();
+                }
+            }
+        });
+    }, { threshold: 0.2 }); // Se déclenche quand 20% de la vidéo est visible
+
+    // On applique l'observateur à toutes les vidéos concernées
+    document.querySelectorAll('.lazy-video').forEach(v => vObserver.observe(v));
+});
+
 function updateTimelinePath() {
     const path = document.querySelector('.timeline-path');
     const ribbon = document.querySelector('.timeline-ribbon');

@@ -475,7 +475,7 @@ body:has(.zoomed) .linkedin-link {
     }
 }
 
-/* Conteneur pour espacer du texte */
+
 .pdf-container {
     margin-top: 1.5rem;
 }
@@ -485,7 +485,7 @@ body:has(.zoomed) .linkedin-link {
     align-items: center;
     gap: 10px;
     padding: 8px 16px;
-    background: rgba(56, 189, 248, 0.05); /* Fond très léger */
+    background: rgba(56, 189, 248, 0.05);
     border: 1px solid rgba(56, 189, 248, 0.2);
     border-radius: 8px;
     color: #f8fafc;
@@ -498,10 +498,9 @@ body:has(.zoomed) .linkedin-link {
 .pdf-icon {
     width: 20px;
     height: 20px;
-    color: var(--accent-color); /* Ton bleu ciel */
+    color: var(--accent-color); 
 }
 
-/* Effet au survol */
 .pdf-link:hover {
     background: rgba(56, 189, 248, 0.15);
     border-color: var(--accent-color);
@@ -515,4 +514,53 @@ body:has(.zoomed) .linkedin-link {
 
 .pdf-link:hover span {
     color: var(--accent-color);
+}
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    min-height: 200px; 
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.video-loader {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(56, 189, 248, 0.1);
+    border-top: 3px solid #38bdf8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 0 10px #38bdf8);
+    position: absolute;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.video-container.loaded .video-loader {
+    display: none;
+}
+
+video.lazy-video {
+    width: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: relative;
+    z-index: 2;
+    cursor: zoom-in;
+}
+
+video.lazy-video.ready {
+    opacity: 1;
 }
