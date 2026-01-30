@@ -178,7 +178,8 @@
 
 				<div class="extra-content">
 					<p>This required addressing precision issues commonly encountered when handling large geometric coordinates on the GPU. The planet's surface is represented by a quadtree that refines as the camera approaches the surface. Elevation data (vertex displacement) is applied to represent the terrain's topography, along with an ortho-imagery layer. To enhance visual realism, an atmospheric scattering algorithm was implemented in GLSL, coupled with a dynamic cloud layer. Finally, the sun's position is calculated based on the date and time to manage day/night cycles.</p>
-                </div>
+                <img src="content/globe.png" width="162" height="128"></img>
+            </div>
 
 				<button class="expand-btn" onclick="toggleExpand(this)">
 					<svg viewBox="0 0 24 24" width="24" height="24">
@@ -189,9 +190,7 @@
 			</div>
         <div class="step-media">
             <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div>
-             <div class="step-media">
-            <div class="zoom-overlay" onclick="toggleZoom(this.nextElementSibling)"></div> 
-                <div class="video-container">
+            <div class="video-container">
                     <div class="video-loader"></div>
                     
                     <video 
@@ -204,7 +203,7 @@
                         class="lazy-video">
                     </video>
                 </div>
-        </div> 
+                <!--<img src="content/globe.png" onclick="toggleZoom(this)"></img> -->
         </div> 
         <div class="scroll-indicator"><span></span></div>
     </section>
